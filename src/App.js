@@ -3,6 +3,8 @@ import './App.css';
 import React from 'react';
 import Formcontact from "./Pages/formcontact.js"
 import Home from './Pages/home';
+import Dashboard from './Pages/dashboard';
+
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 // function App() {
@@ -34,6 +36,7 @@ const App = () =>{
         <Routes>
           <Route path="/" element={<Formcontact />}/>
           <Route path="/home" element={<Home/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
         </Routes>
     </div>
     </>
