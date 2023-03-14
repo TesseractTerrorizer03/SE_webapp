@@ -27,6 +27,7 @@ function Home(){
         <input type="text" placeholder="Search" />
       </div>
       <div className="user_name online">User_Name</div>
+      <div className="logout_button">Logout</div>
       <div className="user-details"></div>
     </div>
   </nav>
