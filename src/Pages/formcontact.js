@@ -2,9 +2,12 @@ import React,{ useState} from "react";
 import './formcontact.css';
 import {useNavigate} from 'react-router-dom';
 import {  getAuth ,AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
-// import { firebaseApp } from "../services/firebase";
 import {app,database} from "../firebase";
 import {ref,onValue} from "firebase/database"
+import { db } from "../firebase";
+// import { useState } from "react";
+import {  createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, doc, setDoc , getFirestore } from "firebase/firestore";
 
 const Formcontact = () =>{
     const navigate= useNavigate();
@@ -52,57 +55,119 @@ const Formcontact = () =>{
       });
   };
 
-//   const handleChange = (e) => {
-//     setInput((prevState) => ({
-//       ...prevState,
-//       [e.target.name]: e.target.value,
-//     }));
-//   };
+  const [useracc,setUseracc]=useState({
+      rollno:"",
+      pass:"",
+      email:"",
+  });
+  // let name1,value1;
+  const getUserData1=(event)=>{
+      let name=event.target.name;
+      let value=event.target.value;
+      setUseracc({ ...useracc,[name]:value});
+  };
+//   const handleSignUp = async (e) => {
+//     e.preventDefault();
+//     const {rollno,pass,email}=useracc;
+//     console.log(useracc);
+//     if (email !== ' ' && pass !== ' ') {
+//         try {
+//             const result = await auth().createUserWithEmailAndPassword(email, pass)
+//             db()
+//                 .collection('Users')
+//                 .doc(result?.user?.uid)
+//                 .set({
+//                     email: result?.user?.email,
+//                     rollno: rollno,
+//                     uid: result?.user?.uid,
+//                     displayName: result?.user?.email.split('@')[0],
+//                 })
+//                 .then(() => {
+//                     alert('User added!');
+//                 });
 
 
-    const [useracc,setUseracc]=useState({
-        rollno:"",
-        pass:"",
-        email:"",
-    });
-    // let name1,value1;
-    const getUserData1=(event)=>{
-        let name=event.target.name;
-        let value=event.target.value;
-        setUseracc({ ...useracc,[name]:value});
-    };
-    const postData1=async(e)=>{
-        alert('executed')
-        e.preventDefault();
-        const {rollno,pass,email}=useracc;
-        alert(pass)
-        if (rollno && pass && email ) {
-            const res1 = await fetch('https://logincreateform-7244d-default-rtdb.firebaseio.com/Login.json',
-        {
-            method:"POST",
-            headers:{
-                "Content-type":"application/json",
-            },
-            body: JSON.stringify({
-                rollno,
-                pass,
-                email,
-            }),
+//         } catch (error) {
+//             if (error.code === 'auth/email-already-in-use') {
+//                 alert('That email address is already in use!');
+//             }
+
+//             else if (error.code === 'auth/invalid-email') {
+//                 alert('That email address is invalid!');
+//             }
+//             else {
+//                 alert(error);
+//             }
+//         }
+//     } else {
+//         alert("Please Enter Your All Field");
+//     }
+
+
+// }
+const handleSignUp = async (e) => {
+    e.preventDefault();
+    console.log(useracc);
+    const { rollno, pass, email } = useracc;
+    if (email !== "" && pass !== "") {
+      try {
+        // const auth = getFirestore();
+        const result = await createUserWithEmailAndPassword(auth, email, pass);
+        // const db = getFirestore();
+        await setDoc(doc(db, "Users", result.user.uid), {
+          email: result.user.email,
+          rollno: rollno,
+          uid: result.user.uid,
+          displayName: result.user.email.split("@")[0],
+        });
+        alert("User added!");
+        setUseracc({ rollno: "", pass: "", email: "" }); // Clear form fields after successful signup
+      } catch (error) {
+        if (error.code === "auth/email-already-in-use") {
+          alert("That email address is already in use!");
+        } else if (error.code === "auth/invalid-email") {
+          alert("That email address is invalid!");
+        } else {
+          alert(error);
         }
-        );
-        if (res1) {
-            setUseracc({
-                rollno:"",
-                pass:"",
-                email:"",
-            });
-            alert("Data Submitted Account")
-        }   
-        }
-        else {
-            alert("Empty fields are  allowed!")
-        }
-    };
+      }
+    } else {
+      alert("Please Enter Your All Field");
+    }
+  };
+
+    // const postData1=async(e)=>{
+    //     alert('executed')
+    //     e.preventDefault();
+    //     const {rollno,pass,email}=useracc;
+    //     alert(pass)
+    //     if (rollno && pass && email ) {
+    //         const res1 = await fetch('https://logincreateform-7244d-default-rtdb.firebaseio.com/Login.json',
+    //     {
+    //         method:"POST",
+    //         headers:{
+    //             "Content-type":"application/json",
+    //         },
+    //         body: JSON.stringify({
+    //             rollno,
+    //             pass,
+    //             email,
+    //         }),
+    //     }
+    //     );
+    //     if (res1) {
+    //         setUseracc({
+    //             rollno:"",
+    //             pass:"",
+    //             email:"",
+    //         });
+    //         alert("Data Submitted Account")
+    //     }   
+    //     }
+    //     else {
+    //         alert("Empty fields are  allowed!")
+    //     }
+    // };
     return (
         <>
         <meta charSet="utf-8" />
@@ -218,7 +283,7 @@ const Formcontact = () =>{
                 defaultValue="Create"
                 className="acc_form" //check if the input is to be changed to button type
                 id="account-submit"
-                onClick={postData1}
+                onClick={handleSignUp}
                 />
             </form>
             {/* <div class="account_div">Don't have an Account? <button class="acc"id="newacc" type="button" onclick="document.getElementById('loginbox').style.display='none';document.getElementById('account').style.display='block';document.getElementById('newacc').style.display='none';document.getElementById('log').style.display='block'">Create New account</button></div> */}

@@ -95,6 +95,19 @@ nav{
     padding: 2%;
     border-radius: 20px;
 }
+.logout_button{
+    margin: 30px;
+    background-color: #6c1111;
+    color: white;
+    margin-right: -2%;
+    padding: 2%;
+    border-radius: 5px;
+}
+
+.logout_button:hover{
+    cursor:pointer;
+    background-color: #4d1717;
+}
 .icons{
 }
 .icons:hover{
