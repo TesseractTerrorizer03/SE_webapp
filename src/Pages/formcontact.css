@@ -169,7 +169,26 @@ form {
     /* margin-bottom: 4%; */
     text-align: center;
 }
-#newacc{
+#newacc,.loginbutton{
+    padding: 0.5em 1em 0.5em 1em;
+    border-radius: 4.7em;
+    border: none;
+    width: 80%;
+    ALIGN-ITEMS: CENTER;
+    MARGIN: AUTO;
+    margin-top: 4%;
+    background-color: #dd4242;
+    /* background-color: #f4e4e4; */
+    border-color: black;
+    font-size: 18px;
+}
+#newacc:hover,.loginbutton:hover {
+    background-color: #ca5f5f;
+    cursor: pointer;
+    box-shadow: #b5b6fb;
+
+}
+/* #log{
     padding: 0.5em 1em 0.5em 1em;
     border-radius: 4.7em;
     border: none;
@@ -180,31 +199,13 @@ form {
     background-color: #f4e4e4;
     border-color: black;
     font-size: 18px;
-}
-#newacc:hover {
+} */
+/* #log:hover {
     background-color: #ffffff;
     cursor: pointer;
     box-shadow: #b5b6fb;
 
-}
-#log{
-    padding: 0.5em 1em 0.5em 1em;
-    border-radius: 4.7em;
-    border: none;
-    width: 80%;
-    ALIGN-ITEMS: CENTER;
-    MARGIN: AUTO;
-    margin-top: 4%;
-    background-color: #f4e4e4;
-    border-color: black;
-    font-size: 18px;
-}
-#log:hover {
-    background-color: #ffffff;
-    cursor: pointer;
-    box-shadow: #b5b6fb;
-
-}
+} */
 .options{
     font-weight: 600;
     width: 100%;

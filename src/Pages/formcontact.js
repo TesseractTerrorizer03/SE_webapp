@@ -1,13 +1,12 @@
 import React,{ useState} from "react";
 import './formcontact.css';
 import {useNavigate} from 'react-router-dom';
-import {  getAuth ,AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
-import {app,database} from "../firebase";
-import {ref,onValue} from "firebase/database"
+import { getAuth ,AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
+import {app} from "../firebase";
 import { db } from "../firebase";
 // import { useState } from "react";
 import {  createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, doc, setDoc , getFirestore } from "firebase/firestore";
+import {  doc, setDoc } from "firebase/firestore";
 
 const Formcontact = () =>{
     const navigate= useNavigate();
@@ -40,7 +39,6 @@ const Formcontact = () =>{
         // Signed in
         console.log(userCredential.user);
         redirect()
-        // ...
       })
       .catch((err) => {
         if (
@@ -66,45 +64,7 @@ const Formcontact = () =>{
       let value=event.target.value;
       setUseracc({ ...useracc,[name]:value});
   };
-//   const handleSignUp = async (e) => {
-//     e.preventDefault();
-//     const {rollno,pass,email}=useracc;
-//     console.log(useracc);
-//     if (email !== ' ' && pass !== ' ') {
-//         try {
-//             const result = await auth().createUserWithEmailAndPassword(email, pass)
-//             db()
-//                 .collection('Users')
-//                 .doc(result?.user?.uid)
-//                 .set({
-//                     email: result?.user?.email,
-//                     rollno: rollno,
-//                     uid: result?.user?.uid,
-//                     displayName: result?.user?.email.split('@')[0],
-//                 })
-//                 .then(() => {
-//                     alert('User added!');
-//                 });
 
-
-//         } catch (error) {
-//             if (error.code === 'auth/email-already-in-use') {
-//                 alert('That email address is already in use!');
-//             }
-
-//             else if (error.code === 'auth/invalid-email') {
-//                 alert('That email address is invalid!');
-//             }
-//             else {
-//                 alert(error);
-//             }
-//         }
-//     } else {
-//         alert("Please Enter Your All Field");
-//     }
-
-
-// }
 const handleSignUp = async (e) => {
     e.preventDefault();
     console.log(useracc);
@@ -120,7 +80,8 @@ const handleSignUp = async (e) => {
           uid: result.user.uid,
           displayName: result.user.email.split("@")[0],
         });
-        alert("User added!");
+        navigate("/home")
+        // alert("User added! Please Login.");
         setUseracc({ rollno: "", pass: "", email: "" }); // Clear form fields after successful signup
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
@@ -128,7 +89,7 @@ const handleSignUp = async (e) => {
         } else if (error.code === "auth/invalid-email") {
           alert("That email address is invalid!");
         } else {
-          alert(error);
+          alert('Test');
         }
       }
     } else {

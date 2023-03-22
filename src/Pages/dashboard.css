@@ -25,10 +25,11 @@
     animation: moveGradient 15s ease-in-out infinite;
 }
 
-#dashboard {
+#dashboard{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    text-align: left;
     /* align-items: center;
     justify-content: center; */
     width: 100%;
@@ -61,13 +62,13 @@
 
 #dashboard-top-left {
     color: #eeeeee;
-    font-family: Kanit, sans-serif;
+    /* font-family: Kanit, sans-serif; */
     font-size: max(5vmin, 30px);
     font-weight: 600;
 }
 
 #dashboard-top-right {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     font-size: max(2vmin, 12px);
     font-weight: 600;
@@ -77,11 +78,14 @@
     background-color: #e25a5a;
     padding: 5px 10px;
     border-radius: 5px;
+
+    width: 10%;
+    height: 40px;
 }
 
 #dashboard-top-right:hover {
     cursor: pointer;
-    background-color: #bc262684;
+    background-color: #be3c3cab;
 }
 
 #dashboard-middle {
@@ -327,7 +331,7 @@
     text-align: center;
     font-size: min(6vmin, 30px);
     font-weight: 700;
-    font-family: "Gentona", sans-serif;
+    /* font-family: "Gentona", sans-serif; */
 }
 
 #dashboard-pass-left-image {

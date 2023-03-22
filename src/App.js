@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import Formcontact from "./Pages/formcontact.js"
 import Home from './Pages/home';
 import Dashboard from './Pages/dashboard';
-
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { AuthContextProvider } from './Pages/AuthContext.js';
+import ProtectedRoute from './Pages/ProtectedRoute';
+import {Routes, Route} from 'react-router-dom';
 
 // function App() {
 //   return (
@@ -33,11 +33,22 @@ const App = () =>{
     <>
     <div className='App'>
       {/* <Formcontact/> */}
+      <AuthContextProvider>
         <Routes>
           <Route path="/" element={<Formcontact />}/>
-          <Route path="/home" element={<Home/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/home" element={
+           <ProtectedRoute>
+              <Home/>
+            </ProtectedRoute>
+          }/>
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Dashboard/>
+            </ProtectedRoute>
+          }/>
+          {/* <Route path="/dashboard" element={<Dashboard/>}/> */}
         </Routes>
+      </AuthContextProvider>
     </div>
     </>
   );

@@ -1,16 +1,35 @@
 import React from 'react';
 import './dashboard.css';
+import {useNavigate} from 'react-router-dom';
+import {auth} from "../firebase";
+import { signOut } from "firebase/auth";
 
-function dashboard(){
+function Dashboard(){
+  const navigate= useNavigate();
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      alert('Succesfully Signed out!')
+      navigate("/")
+    }).catch((error) => {
+      alert('Error in Signing out!')
+      alert(error);
+    });
+  };
     return(
-       
 <div id="dashboard-container">
         <div id="dashboard">
           <div id="dashboard-top">
             <div id="dashboard-top-left">Dashboard</div>
-            <div id="dashboard-top-right">
-              Logout
-            </div>
+            {/* <div id="dashboard-top-right"> */}
+            <button
+                // className=""
+                id="dashboard-top-right"
+                type="button"
+                onClick={handleSignOut}
+                >
+                Logout
+                </button>
+            {/* </div> */}
           </div>
         <div className='dashboard-middle'>
           <div id="dashboard-pass-and-details">
@@ -96,4 +115,4 @@ function dashboard(){
 </div>
     );
 }
-export default dashboard;
+export default Dashboard;
