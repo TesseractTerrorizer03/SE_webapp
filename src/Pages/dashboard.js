@@ -88,11 +88,23 @@ function dashboard(){
           <div id="dashboard-registeredEvents">
             <div id="dashboard-registeredEvents-title">Asked Questions</div>
             <div id="dashboard-registeredEvents-content">
-            This will contain the questions asked 
+            <div className='question-asked'>
+          
+              <span className='question-content'>
+                <span className='ques-no'> Qs :-  </span>
+                What are the possible digits upto which pie can be found out?
+              </span>
+              <br></br>
+              <span className='question-content'>
+                <span className='ques-no'> Qs :-  </span>
+                What are the programming languages used for web development?
+              </span>
+
+            </div>
             </div>
           </div>
         </div>
-      
+        
 </div>
     );
 }

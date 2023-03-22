@@ -32,7 +32,31 @@ function Home(){
     </div>
   </nav>
   <div className="container">
-    <div className="left-sidebar"></div>
+    <div className="left-sidebar">
+    <div className='left-sidebar-enclosed'>
+      <span className='left-title'>Subjects to choose from </span>
+          <ul className='side-list'>
+            <li className='list-items'>
+              {/* <a href=""className='side-links'> */}
+                <img src={require('./science.webp')} className='side-img' alt="Science" />
+                <span className='side-name'>Science</span>
+              {/* </a> */}
+            </li>
+            <li>
+              {/* <a href="#"className='list-items'> */}
+                <img src={require('./math.webp')} className='side-img' alt="Maths" />
+                <span className='side-name'>Maths</span>
+              {/* </a> */}
+            </li>
+            <li>
+              {/* <a href="#"className='list-items'> */}
+                <img src={require('./csimage.png')} className='side-img' alt="CS" />
+                <span className='side-name'>Computer Science</span>
+              {/* </a> */}
+            </li>
+          </ul>
+    </div>
+    </div>
     <div className="main-content">
       <div className="input-container">
         <h2>What would you like to ask today?</h2>
