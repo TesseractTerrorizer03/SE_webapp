@@ -6,6 +6,8 @@ import {auth,database,ref} from "../firebase";
 import { signOut } from "firebase/auth";
 import { query, orderByChild, equalTo,onValue } from 'firebase/database';
 
+import Navbar from './navbar.js';
+
 function Dashboard(){
   // const [usertxt, setUsertxt] = useState({ query: "" });
   const navigate= useNavigate();
@@ -43,6 +45,7 @@ function Dashboard(){
   }, []);
 
     return(
+      <div><Navbar/>
 <div id="dashboard-container">
         <div id="dashboard">
           <div id="dashboard-top">
@@ -159,6 +162,7 @@ function Dashboard(){
           </div>
         </div>
         
+ </div>
 </div>
     );
 }

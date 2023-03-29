@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './home.css';
+import Navbar from './navbar.js';
 // import Parse from 'parse/dist/parse.min.js';
 import {auth} from "../firebase";
 import { signOut } from "firebase/auth";
@@ -67,51 +68,9 @@ function Home(){
     };
     return (
         <div className='home_div'>
-  <nav>
-    <div className="nav-left">
-      <img src={require('./Doubt_Busters_Logo_nobg.png')} className="logo" alt="logo" />
-      <div className="site-name">Doubt Busters</div>
-      <div className="icons_navbar">
-        <img
-          src={require('./question_icon.png')}
-          alt="question icon"
-          className="question-icon icons"
-        />
-        <img
-          src={require('./bell.png')}
-          alt="question icon"
-          className="question-icon icons"
-        />
-      </div>
-    </div>
-    <div className="nav-right">
-      <div className="search-box">
-        <img src={require('./search_icon.png')} alt="search icon" className="search-icon" />
-        <input type="text" placeholder="Search" />
-      </div>
-      {/* <div className="user_name online"> */}
-      <button
-                className="user_name_online"
-                // id="dashboard"
-                type="button"
-                onClick={GoTODashboard}
-                >
-                Dashboard
-                </button>
-      {/* </div> */}
-      {/* <div className="logout_button"> */}
-      <button
-                className="logout_button"
-                // id="signout"
-                type="button"
-                onClick={handleSignOut}
-                >
-                Logout
-                </button>
-      {/* </div> */}
-      <div className="user-details"></div>
-    </div>
-  </nav>
+    <Navbar/>
+
+  
   <div className="container">
     <div className="left-sidebar">
     <div className='left-sidebar-enclosed'>

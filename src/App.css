@@ -4,11 +4,11 @@ html, body, #root {
 }
 
 .App {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   text-align: center;
   /* height: 200%; */
-  /* width: 100%; */
+  width: 100%;
  /* background-color: #FD5D5D; */
 }
 
