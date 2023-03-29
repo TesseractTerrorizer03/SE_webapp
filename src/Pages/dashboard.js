@@ -78,13 +78,7 @@ function Dashboard(){
                 <div>
       {/* <input type="text" value={userEmail} onChange={handleUserEmailChange} />
       <button onClick={handleFetchData}>Fetch Data</button> */}
-      {userData &&
-        userData.map((user) => (
-          <div key={user.id}>
-            <h2>{user.query}</h2>
-            <p>{user.answer}</p>
-          </div>
-        ))}
+     
     </div>
               </div>
             </div>
@@ -137,20 +131,30 @@ function Dashboard(){
           <div id="dashboard-registeredEvents">
             <div id="dashboard-registeredEvents-title">Asked Questions</div>
             <div id="dashboard-registeredEvents-content">
-            <div className='question-asked'>
-          
-              <span className='question-content'>
-                <span className='ques-no'> Qs :-  </span>
-                What are the possible digits upto which pie can be found out?
-              </span>
-              <br></br>
-              <span className='question-content'>
-                <span className='ques-no'> Qs :-  </span>
-                What are the programming languages used for web development?
-              </span>
-              {/* <button onClick={CheckQuestions}></button> */}
+            
+            {userData &&
+            userData.slice(0, 3).map((user) => (
+          <div>
+          <div key={user.id}>
+            {/* <h2>{user.query}</h2> */}
+            {/* <p>{user.answer}</p> */}
+          </div>
 
-            </div>
+          <div className='question-asked'>
+          
+          <span className='question-content'>
+            <span className='question-text'><span className='ques-no'> Qs :-  </span>{user.query}<span/>
+            
+            {/* What are the possible digits upto which pie can be found out? */}
+          </span>
+          <span className='answer-content'><span className='ques-no'> Ans :  </span>{user.answer}</span>
+          </span>
+          {/* <button onClick={CheckQuestions}></button> */}
+        </div>
+        </div>
+
+        ))}
+           
             </div>
           </div>
         </div>
