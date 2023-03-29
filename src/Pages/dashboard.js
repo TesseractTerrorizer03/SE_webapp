@@ -1,10 +1,13 @@
 import React from 'react';
 import './dashboard.css';
+import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
-import {auth} from "../firebase";
+import {auth,database,ref} from "../firebase";
 import { signOut } from "firebase/auth";
+import { query, orderByChild, equalTo,onValue } from 'firebase/database';
 
 function Dashboard(){
+  // const [usertxt, setUsertxt] = useState({ query: "" });
   const navigate= useNavigate();
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -15,6 +18,30 @@ function Dashboard(){
       alert(error);
     });
   };
+  // const userEmail = "shashwat@gmail.com";
+
+  const [userData, setUserData] = useState(null);
+  // const [userEmail, setUserEmail] = useState('');
+
+  useEffect(() => {
+    // const database = getDatabase();
+    const userRef = ref(database, 'Questions');
+
+    onValue(userRef, (snapshot) => {
+      const data = snapshot.val();
+
+      if (data) {
+        const userDataArray = Object.keys(data).map((key) => {
+          return {
+            id: key,
+            ...data[key],
+          };
+        });
+        setUserData(userDataArray);
+      }
+    });
+  }, []);
+
     return(
 <div id="dashboard-container">
         <div id="dashboard">
@@ -48,14 +75,17 @@ function Dashboard(){
                     roy.16@iitj.ac.in
                   </span>
                 </div>
-                {/* {userData.contact && (
-                  <div className="dashboard-personalDetails-content-title">
-                    Phone:{" "}
-                    <span className="dashboard-personalDetails-content-value">
-                      {userData.contact}
-                    </span>
-                  </div>
-                )} */}
+                <div>
+      {/* <input type="text" value={userEmail} onChange={handleUserEmailChange} />
+      <button onClick={handleFetchData}>Fetch Data</button> */}
+      {userData &&
+        userData.map((user) => (
+          <div key={user.id}>
+            <h2>{user.query}</h2>
+            <p>{user.answer}</p>
+          </div>
+        ))}
+    </div>
               </div>
             </div>
 
@@ -118,6 +148,7 @@ function Dashboard(){
                 <span className='ques-no'> Qs :-  </span>
                 What are the programming languages used for web development?
               </span>
+              {/* <button onClick={CheckQuestions}></button> */}
 
             </div>
             </div>

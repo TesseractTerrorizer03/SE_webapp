@@ -4,11 +4,11 @@ import './home.css';
 import {auth} from "../firebase";
 import { signOut } from "firebase/auth";
 import {useNavigate} from 'react-router-dom';
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 
 function Home(){
-  const { user } = useAuth0();
+  // const { user } = useAuth0();
   // let usercred=user.sub;
   const navigate= useNavigate();
   const [usertxt,setUsertxt]=useState({query:''});
@@ -23,6 +23,11 @@ function Home(){
           e.preventDefault();
           const {query}=usertxt;
           // alert(pass)
+
+          const currentUser = auth.currentUser;
+          const userEmail = currentUser ? currentUser.email : null;
+          const answer = null;
+
           if (query ) {
               const res1 = await fetch('https://logincreateform-7244d-default-rtdb.firebaseio.com/Questions.json',
           {
@@ -32,7 +37,8 @@ function Home(){
               },
               body: JSON.stringify({
                   query,
-                  // usercred,
+                  userEmail,
+                  answer,
               }),
           }
           );
