@@ -12,24 +12,14 @@ function Home(){
   const [tags, setTags] = useState(['Computer Science', 'Mathematics', 'Physics', 'Chemistry']);
 
   const navigate= useNavigate();
-  const [usertxt, setUsertxt] = useState({ query: '', tags: [] });
+  const [usertxt,setUsertxt]=useState({query:''});
 
-  // const getUserData=(event)=>{
-  //   let name=event.target.name;
-  //   let value=event.target.value;
-  //   setUsertxt({ ...usertxt,[name]:value});
-  // };
   const getUserData=(event)=>{
     let name=event.target.name;
     let value=event.target.value;
-    if (name === 'tags') {
-      // Split the tag string into an array of tags and trim any whitespace
-      const tags = value.split(',').map((tag) => tag.trim());
-      setUsertxt({ ...usertxt, [name]: tags });
-    } else {
-      setUsertxt({ ...usertxt, [name]: value });
-    }
+    setUsertxt({ ...usertxt,[name]:value});
   };
+
   const filterTags = (tag) => {
     if (Array.isArray(tags)) {
       const filteredTags = tags.filter((t) => t !== tag);
@@ -57,21 +47,7 @@ function Home(){
     });
   });
 
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setUsertxt((prevState) => ({
-        ...prevState,
-        tags: [...prevState.tags, value],
-      }));
-    } else {
-      setUsertxt((prevState) => ({
-        ...prevState,
-        tags: prevState.tags.filter((tag) => tag !== value),
-      }));
-    }
-  };
-  
+
   const addNewTask = async (task, userEmail, tag) => {
     // Check if the tag is in the list of standardized tags
     if (!tags.includes(tag)) {
@@ -111,16 +87,38 @@ function Home(){
     return null;
   }
 
+  // const handleCheckboxChange = (event) => {
+  //   const { value, checked } = event.target;
+  //   if (checked) {
+  //     setUsertxt((prevState) => ({
+  //       ...prevState,
+  //       tags: [...prevState.tags, value],
+  //     }));
+  //   } else {
+  //     setUsertxt((prevState) => ({
+  //       ...prevState,
+  //       tags: prevState.tags.filter((tag) => tag !== value),
+  //     }));
+  //   }
+  // };
+
+  // const postData2 = () => {
+  //   const currentUser = auth.currentUser;
+  //   const userEmail = currentUser ? currentUser.email : null;
+    
+  //   addNewTask(usertxt.query, userEmail); // call addNewTask function to save user's question
+  //   setUsertxt({query: ''}); // clear the input field
+  // }
   
   const postData = async(e) => {
     e.preventDefault();
-  
+
     const currentUser = auth.currentUser;
     const userEmail = currentUser ? currentUser.email : null;
-    const { query, tags } = usertxt;
+    const { query, tag } = usertxt;
     const answer = null;
-  
-    if (query && tags.length > 0 && tags.every((tag) => tags.includes(tag))) {
+
+    if (query && tag && tags.includes(tag)) {
       const res1 = await fetch('https://logincreateform-7244d-default-rtdb.firebaseio.com/Questions.json', {
         method: 'POST',
         headers: {
@@ -130,50 +128,58 @@ function Home(){
           query,
           userEmail,
           answer,
-          tags,
+          tag,
         }),
       });
-  
+
       if (res1) {
-        setUsertxt((prevState) => ({ ...prevState, query: '', tags: [] }));
+        setUsertxt((prevState) => ({ ...prevState, query: '', tag: '' }));
         alert('Question Posted!');
       }
     } else {
       alert('Invalid submission!');
     }
   };
-  
-  // const postData = async(e) => {
-  //   e.preventDefault();
 
-  //   const currentUser = auth.currentUser;
-  //   const userEmail = currentUser ? currentUser.email : null;
-  //   const { query, tag } = usertxt;
-  //   const answer = null;
 
-  //   if (query && tag && tags.includes(tag)) {
-  //     const res1 = await fetch('https://logincreateform-7244d-default-rtdb.firebaseio.com/Questions.json', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         query,
-  //         userEmail,
-  //         answer,
-  //         tag,
-  //       }),
-  //     });
+  // const postData=async(e)=>{
+  //         // alert('executed')
+  //         e.preventDefault();
+  //         const {query}=usertxt;
 
-  //     if (res1) {
-  //       setUsertxt((prevState) => ({ ...prevState, query: '', tag: '' }));
-  //       alert('Question Posted!');
-  //     }
-  //   } else {
-  //     alert('Invalid submission!');
-  //   }
-  // };
+  //         // alert(pass)
 
+  //         const currentUser = auth.currentUser;
+  //         const userEmail = currentUser ? currentUser.email : null;
+  //         const answer = null;
+
+
+
+  //         if (query ) {
+  //             const res1 = await fetch('https://logincreateform-7244d-default-rtdb.firebaseio.com/Questions.json',
+  //         {
+  //             method:"POST",
+  //             headers:{
+  //                 "Content-type":"application/json",
+  //             },
+  //             body: JSON.stringify({
+  //                 query,
+  //                 userEmail,
+  //                 answer,
+  //             }),
+  //         }
+  //         );
+  //         if (res1) {
+  //             setUsertxt({
+  //                 query:"",
+  //             });
+  //             alert("Question Posted!")
+  //         }   
+  //         }
+  //         else {
+  //             alert("Empty submission is not allowed!")
+  //         }
+  //     };
   const GoTODashboard = () =>{
     navigate("/dashboard")
   }
@@ -226,21 +232,21 @@ function Home(){
             onChange={getUserData}/> 
         </div>
         <div className="input-box" id="inp-box">
-    <label htmlFor="tag">Tags:</label>
-    {tags.map((tag) => (
-      <div key={tag}>
-        <input
-          type="checkbox"
-          id={tag}
-          name={tag}
-          value={tag}
-          checked={usertxt.tags.includes(tag)}
-          onChange={handleCheckboxChange}
-        />
-        <label htmlFor={tag}>{tag}</label>
-      </div>
-    ))}
-  </div>
+          <label htmlFor="tag">Select a tag:</label>
+          <select name="tag" id="tag" value={usertxt.tag} onChange={getUserData}>
+            <option value="">Choose a tag</option>
+            {tags.map((tag) => (
+              <option key={tag} value={tag}>
+                {tag}
+              </option>
+            ))}
+          </select>
+          {usertxt.tag && (
+            <button type="button" onClick={() => filterTags(usertxt.tag)}>
+              Remove
+            </button>
+          )}
+        </div>
         <button id="submit-btn"  onClick={postData}> Post</button>
       </div>
     </div>
