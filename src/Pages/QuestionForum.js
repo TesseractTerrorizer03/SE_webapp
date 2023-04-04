@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getDatabase, ref, push, onValue } from "firebase/database";
 import {auth} from "../firebase";
-
+import "./QuestionForum.css";
+import Navbar from './navbar';
 const db = getDatabase();
 
 const QuestionPage = () => {
@@ -39,16 +40,20 @@ const QuestionPage = () => {
 //   };
 
 return (
-    <div>
+  <div>
+  <Navbar/>
+  <span className='question-page-title'>Questions</span>
+    <div className=''>
       {questions.map((question) => (
-        <div key={question.id}>
-          <p>{question.query}</p>
-          <p>{question.userEmail}</p>
+        <div key={question.id} className='single-question'>
+          <p><div className='individual-qs-title'>Qs.</div> {question.query}</p>
+          <p><div className='individual-qs-title'>Asked by:</div> {question.userEmail}</p>
           <p>{question.tags && question.tags.join(", ")}</p>
           {/* {console.log(question.tags)} */}
         </div>
       ))}
     </div>
+  </div>
   );
   
 };

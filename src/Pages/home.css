@@ -230,6 +230,36 @@ nav{
     outline: none;
   }
   
+  #inp-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 2%;
+  }
+  
+  #inp-box div {
+    margin-right: 10px;
+  }
+  
+  #inp-box input[type="checkbox"] {
+    display: none;
+  }
+  
+  #inp-box label {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #inp-box input[type="checkbox"]:checked + label {
+    background-color: #009688;
+    color: #f9f9f9;
+  }
+  .tag-title{
+    font-weight: 700;
+  }
   button {
     width: 25%;
     height: 43px;

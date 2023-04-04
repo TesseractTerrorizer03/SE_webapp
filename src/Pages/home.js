@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom';
 
 function Home(){
 
-  const [tags, setTags] = useState(['Computer Science', 'Mathematics', 'Physics', 'Chemistry']);
+  const [tags, setTags] = useState(['CS Course', 'MAL Course', 'Physics ', 'Chemistry']);
 
   const navigate= useNavigate();
   const [usertxt, setUsertxt] = useState({ query: '', tags: [] });
@@ -225,8 +225,8 @@ function Home(){
             value  = {usertxt.query}
             onChange={getUserData}/> 
         </div>
-        <div className="input-box" id="inp-box">
-    <label htmlFor="tag">Tags:</label>
+        <div className="question-tags" id="inp-box">
+    <label htmlFor="tag" className='tag-title'>Tags:</label>
     {tags.map((tag) => (
       <div key={tag}>
         <input
