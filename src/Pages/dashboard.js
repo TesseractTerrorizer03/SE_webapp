@@ -9,7 +9,6 @@ import { query, orderByChild, equalTo,onValue } from 'firebase/database';
 import Navbar from './navbar.js';
 
 function Dashboard(){
-  // const [usertxt, setUsertxt] = useState({ query: "" });
   const navigate= useNavigate();
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -20,13 +19,10 @@ function Dashboard(){
       alert(error);
     });
   };
-  // const userEmail = "shashwat@gmail.com";
 
   const [userData, setUserData] = useState(null);
-  // const [userEmail, setUserEmail] = useState('');
 
   useEffect(() => {
-    // const database = getDatabase();
     const userRef = ref(database, 'Questions');
 
     onValue(userRef, (snapshot) => {
@@ -79,8 +75,6 @@ function Dashboard(){
                   </span>
                 </div>
                 <div>
-      {/* <input type="text" value={userEmail} onChange={handleUserEmailChange} />
-      <button onClick={handleFetchData}>Fetch Data</button> */}
      
     </div>
               </div>
@@ -95,42 +89,6 @@ function Dashboard(){
         </div>
 
 
-          {/* <div id="dashboard-download-ticket-wrapper">
-            <div
-              id="dashboard-download-ticket">
-              <div className="dashboard-pass-left-side">
-                /* {console.log(userData)} 
-               
-                  <div
-                    className="dashboard-pass-registrationID"
-                    style={{
-                      fontSize: "calc(0.025 * 1771px)",
-                    }}
-                  >
-                    <div
-                      className="registration-text"
-                      style={{
-                        fontSize: "calc(0.014 * 1771px)",
-                      }}
-                    >
-                      Registration ID:{" "}
-                    </div>
-                    1234
-                  </div>
-                
-                <div className="pass-details">
-                  <div
-                    className="middle-text">
-                    Name
-                  </div>
-                  <div
-                    className="middle-text-mail">
-                    mail
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <div id="dashboard-registeredEvents">
             <div id="dashboard-registeredEvents-title">Asked Questions</div>
             <div id="dashboard-registeredEvents-content">
@@ -139,8 +97,7 @@ function Dashboard(){
             userData.slice(0, 3).map((user) => (
           <div>
           <div key={user.id}>
-            {/* <h2>{user.query}</h2> */}
-            {/* <p>{user.answer}</p> */}
+
           </div>
 
           <div className='question-asked'>
