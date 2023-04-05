@@ -261,10 +261,10 @@ nav{
     font-weight: 700;
   }
   button {
-    width: 25%;
-    height: 43px;
-    font-size: 28px;
-    padding: 5px 15px;
+    width: 17%;
+    height: 48px;
+    font-size: 23px;
+    padding: 4px 12px;
     /* background-color: rgb(210, 97, 97); */
     color: rgb(255, 255, 255);
     border: none;
@@ -299,7 +299,8 @@ nav{
   }
 
   .user_name_online{
-    background-color: #f97373;
+    background-color: #c25757;
+    margin-right: 2%;
   }
   
   .user_name_online:hover{

@@ -47,14 +47,14 @@ function Dashboard(){
           <div id="dashboard-top">
             <div id="dashboard-top-left">Dashboard</div>
             {/* <div id="dashboard-top-right"> */}
-            <button
+            {/* <button
                 // className=""
                 id="dashboard-top-right"
                 type="button"
                 onClick={handleSignOut}
                 >
                 Logout
-                </button>
+                </button> */}
             {/* </div> */}
           </div>
         <div className='dashboard-middle'>

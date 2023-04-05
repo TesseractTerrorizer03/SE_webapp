@@ -12,6 +12,13 @@ function Navbar(){
     const GoTODashboard = () =>{
         navigate("/dashboard")
       }
+      const GoTOQuestions = () =>{
+        navigate("/QuestionForum")
+      }
+      const GoTOHome = () =>{
+        navigate("/home")
+      }
+
         const handleSignOut = () => {
           signOut(auth).then(() => {
             alert('Succesfully Signed out!')
@@ -53,6 +60,23 @@ function Navbar(){
                 onClick={GoTODashboard}
                 >
                 Dashboard
+                </button>
+      
+      <button
+                className="user_name_online"
+                // id="dashboard"
+                type="button"
+                onClick={GoTOQuestions}
+                >
+                Questions
+                </button>
+      <button
+                className="user_name_online"
+                // id="dashboard"
+                type="button"
+                onClick={GoTOHome}
+                >
+                Home
                 </button>
       {/* </div> */}
       {/* <div className="logout_button"> */}
