@@ -7,6 +7,8 @@ import { db } from "../firebase";
 // import { useState } from "react";
 import {  createUserWithEmailAndPassword } from "firebase/auth";
 import {  doc, setDoc } from "firebase/firestore";
+import dbAnimation from "./doubt_animation.json";
+import Lottie from "lottie-react";
 
 const Formcontact = () =>{
     const navigate= useNavigate();
@@ -130,7 +132,8 @@ const handleSignUp = async (e) => {
     //     }
     // };
     return (
-        <>
+        <div className="full-div">
+        <div className="heading-doubt-busters">Doubt busters</div>
         <meta charSet="utf-8" />
         <title>Portal Login</title>
         <style
@@ -140,8 +143,15 @@ const handleSignUp = async (e) => {
             }}
         />
         <link rel="stylesheet" type="text/css" href="Style.css" />
+        
         <div className="form_container" id="cont">
+        <div className="animation-div">
+              <Lottie animationData={dbAnimation}/>
+              {/* <div className="animation-desc">LEt's end the doubts!</div> */}
+        </div> 
             <div className="loginbox" id="loginbox">
+                   
+        
             <form className="l_form" id="lform" method="POST" action="">
                 <h1 className="form_title1">Log in to your account</h1>
                 <input
@@ -207,7 +217,7 @@ const handleSignUp = async (e) => {
 
             </div>
             {error && <div>{error}</div>}
-            </div>
+          </div>
             <div className="createaccount" id="account">
             <form className="form" id="aform" method="POST" action="">
                 <h1 className="form_title2">Create Account</h1>
@@ -275,7 +285,7 @@ const handleSignUp = async (e) => {
             </div>
             </div>
         </div>
-        </>
+        </div>
 
     );
 };

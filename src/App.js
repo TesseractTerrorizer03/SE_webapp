@@ -19,19 +19,19 @@ const App = () =>{
         <Routes>
           <Route path="/" element={<Formcontact />}/>
           <Route path="/home" element={
-          //  <ProtectedRoute>
+           <ProtectedRoute>
               <Home/>
-            // </ProtectedRoute>
+           </ProtectedRoute>
           }/>
           <Route path="/dashboard" element={
-            // <ProtectedRoute>
+             <ProtectedRoute>
               <Dashboard/>
-            // </ProtectedRoute>
+             </ProtectedRoute>
           }/>
           <Route path="/QuestionForum" element={
-            // <ProtectedRoute>
+             <ProtectedRoute>
               <QuestionForum/>
-            // </ProtectedRoute>
+             </ProtectedRoute>
           }/>
           {/* <Route path="/dashboard" element={<Dashboard/>}/> */}
         </Routes>
