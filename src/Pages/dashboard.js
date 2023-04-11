@@ -64,27 +64,53 @@ const  Dashboard = () => {
         <div id="dashboard">
           <div id="dashboard-top">
             <div id="dashboard-top-left">Dashboard</div>
-            <div id="dashboard-top-right">
-              {/* {displayName && <div id="user-greeting">Welcome, {displayName}</div>} */}
-              <button id="logout-button" type="button" onClick={handleSignOut}>Logout</button>
-            </div>
           </div>
-          <div id="dashboard-main">
-            <div id="dashboard-questions">
-              <div id="dashboard-questions-title">Your Questions</div>
-              <div id="dashboard-questions-list">
-                {userData && userData.map((question,index) => (
-                  <ul>
-                    <li key = {index}>
-                      {index+1} {question}
-                    </li>
-                  </ul>
-                ))}
+
+          <div id="dashboard-pass-and-details">
+            <div id="dashboard-personalDetails">
+              <div id="dashboard-personalDetails-title">Personal Details</div>
+              <div id="dashboard-personalDetails-content">
+                <div className="dashboard-personalDetails-content-title">
+                  Name:{" "}
+                  <span className="dashboard-personalDetails-content-value">
+                    Shashwat Roy
+                  </span>
+                </div>
+                <div className="dashboard-personalDetails-content-title">
+                  Email:{" "}
+                  <span className="dashboard-personalDetails-content-value">
+                    roy.16@iitj.ac.in
+                  </span>
+                </div>
+                <div>
+     
+              </div>
               </div>
             </div>
-            <div id = "all-questions">
-              <button>See all</button>
+
+          </div>
+
+          <div id="dashboard-main">
+          <div id="dashboard-registeredEvents">
+            <div id="dashboard-registeredEvents-title">Asked Questions</div>
+            <div id="dashboard-registeredEvents-content">
+                {userData && userData.map((question,index) => (
+              
+           <div className='question-asked'>
+           
+           <span className='question-content'>
+             <span className='question-text'>
+             <span className='ques-no' key={index}> Qs{index+1}</span> :-{question}<span/>
+             
+ 
+           </span>
+           </span>
             </div>
+                ))}
+              </div>
+            <button className='see-all-btn'>See all</button>
+            </div>
+
           </div>
         </div>
       </div>

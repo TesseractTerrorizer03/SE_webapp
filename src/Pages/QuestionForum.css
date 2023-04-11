@@ -31,14 +31,6 @@
     margin-bottom: 10px;
   }
   
-  .single-question p:last-child {
-    margin-top: 10px;
-  }
-  
-  .single-question p:last-child:before {
-    content: "Tags: ";
-    font-weight: bold;
-  }
   
   .single-question p:last-child span {
     background-color: #e0e0e0;
@@ -48,4 +40,14 @@
     display: inline-block;
     margin-right: 5px;
   }
-  
+  .Answers-btn{
+    width: auto;
+    margin-top: 4px;
+    margin-left: 80%;
+    border-radius: 6px;
+}
+.tags-div{
+  font-size: 1vmax;
+    margin-top: 4px;
+    color: #5367da;
+}

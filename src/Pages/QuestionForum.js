@@ -32,9 +32,9 @@ return (
         <div key={question.id} className='single-question'>
           <p><div className='individual-qs-title'>Qs.</div> {question.query}</p>
           <p><div className='individual-qs-title'>Asked by:</div> {question.userEmail}</p>
-          <p>{question.tags && question.tags.join(", ")}</p>
+          <div className='tags-div'><div className='individual-qs-title'>Tags.</div>{question.tags && question.tags.join(", ")}</div>
           <Link to={`/Answers/${question.id}`}>
-            <button className="Answers" >Answers</button>
+            <button className="Answers-btn" >Answers</button>
           </Link>
           {/* {console.log(question.tags)} */}
         </div>

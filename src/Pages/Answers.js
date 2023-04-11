@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ref, onValue, update } from "firebase/database";
 import { getDatabase } from "firebase/database";
-
+import Navbar from "./navbar";
+import "./Answers.css";
 const db = getDatabase();
 
 const Answers = () => {
@@ -43,26 +44,30 @@ const Answers = () => {
 
   return (
     <div>
-      <h1>{question.query}</h1>
-      <p>Asked by: {question.userEmail}</p>
-      <p>Tags: {question.tags && question.tags.join(", ")}</p>
+    <Navbar/>
+    <span className='question-page-title-ans'>Questions with answers</span>
+    <div className='single-ans'>
+    <p><div className='individual-qs-title-ans'>Qs.</div> {question.query}</p>
+    <p><div className="asked-by"><div className='individual-qs-title-ans asked-by '>Asked by:</div> {question.userEmail}</div></p>
+    <p><div className='individual-qs-title-ans asked-by'>Tags.</div><span className="tags-div">{question.tags && question.tags.join(", ")}</span></p>
 
-      <h2>Answers:</h2>
+      <span className="answers-heading">Answers:</span>
       {answers.map((answer, index) => (
         <div key={index}>
-          <p>{answer}</p>
+          <p>{index+1}. {answer}</p>
         </div>
       ))}
 
-      <div className="reply-box" id="rep-box">
-        <textarea
+      <div className="reply-box" id="">
+        <textarea className="rep-box"
           type="text"
           placeholder="Type your answer here..."
           value={userReply}
           onChange={getUserData}
         />
-        <button onClick={addReply}>Reply</button>
+        <button  className="reply-button" onClick={addReply}>Reply</button>
       </div>
+    </div>
     </div>
   );
 };
