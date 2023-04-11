@@ -2,8 +2,7 @@ import React,{ useState} from "react";
 import './formcontact.css';
 import {useNavigate} from 'react-router-dom';
 import { getAuth ,AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
-import {app} from "../firebase";
-import { db } from "../firebase";
+import { db ,auth} from "../firebase";
 // import { useState } from "react";
 import {  createUserWithEmailAndPassword } from "firebase/auth";
 import {  doc, setDoc } from "firebase/firestore";
@@ -29,14 +28,14 @@ const Formcontact = () =>{
 //   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const auth= getAuth(app);
   
   
-  function handleLogin(e) {
+  
+  async function handleLogin(e) {
     const {email,password}=userlog;
 //     const postData=async(e)=>{
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         console.log(userCredential.user);

@@ -10,15 +10,10 @@ import {useNavigate} from 'react-router-dom';
 function Home(){
 
   const [tags, setTags] = useState(['CS Course', 'MAL Course', 'Physics ', 'Chemistry']);
-
+  // const [answers, setAnswers] = useState([]);
   const navigate= useNavigate();
   const [usertxt, setUsertxt] = useState({ query: '', tags: [] });
-
-  // const getUserData=(event)=>{
-  //   let name=event.target.name;
-  //   let value=event.target.value;
-  //   setUsertxt({ ...usertxt,[name]:value});
-  // };
+  
   const getUserData=(event)=>{
     let name=event.target.name;
     let value=event.target.value;
@@ -112,13 +107,13 @@ function Home(){
   }
 
   
-  const postData = async(e) => {
+  const postData = async (e) => {
     e.preventDefault();
   
     const currentUser = auth.currentUser;
     const userEmail = currentUser ? currentUser.email : null;
     const { query, tags } = usertxt;
-    const answer = null;
+    const answers = ["Answers appear below"];
   
     if (query && tags.length > 0 && tags.every((tag) => tags.includes(tag))) {
       const res1 = await fetch('https://logincreateform-7244d-default-rtdb.firebaseio.com/Questions.json', {
@@ -129,7 +124,7 @@ function Home(){
         body: JSON.stringify({
           query,
           userEmail,
-          answer,
+          answers,
           tags,
         }),
       });
@@ -139,40 +134,12 @@ function Home(){
         alert('Question Posted!');
       }
     } else {
-      alert('Invalid submission!');
+      alert('You must choose at least 1 tag and the text cannot be empty!');
     }
   };
   
-  // const postData = async(e) => {
-  //   e.preventDefault();
+  
 
-  //   const currentUser = auth.currentUser;
-  //   const userEmail = currentUser ? currentUser.email : null;
-  //   const { query, tag } = usertxt;
-  //   const answer = null;
-
-  //   if (query && tag && tags.includes(tag)) {
-  //     const res1 = await fetch('https://logincreateform-7244d-default-rtdb.firebaseio.com/Questions.json', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         query,
-  //         userEmail,
-  //         answer,
-  //         tag,
-  //       }),
-  //     });
-
-  //     if (res1) {
-  //       setUsertxt((prevState) => ({ ...prevState, query: '', tag: '' }));
-  //       alert('Question Posted!');
-  //     }
-  //   } else {
-  //     alert('Invalid submission!');
-  //   }
-  // };
 
   const GoTODashboard = () =>{
     navigate("/dashboard")

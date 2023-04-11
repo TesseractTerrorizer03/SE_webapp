@@ -4,6 +4,7 @@ import Formcontact from "./Pages/formcontact.js"
 import Home from './Pages/home';
 import QuestionForum from './Pages/QuestionForum';
 import Dashboard from './Pages/dashboard';
+import Answers from './Pages/Answers';
 import { AuthContextProvider } from './Pages/AuthContext.js';
 import ProtectedRoute from './Pages/ProtectedRoute';
 import {Routes, Route} from 'react-router-dom';
@@ -23,6 +24,12 @@ const App = () =>{
               <Home/>
            </ProtectedRoute>
           }/>
+          <Route path="/Answers" element={
+           <ProtectedRoute>
+              <Answers/>
+           </ProtectedRoute>
+          }/>
+
           <Route path="/dashboard" element={
              <ProtectedRoute>
               <Dashboard/>
@@ -33,6 +40,7 @@ const App = () =>{
               <QuestionForum/>
              </ProtectedRoute>
           }/>
+          <Route path="/Answers/:questionId" element={<Answers />} />
           {/* <Route path="/dashboard" element={<Dashboard/>}/> */}
         </Routes>
       </AuthContextProvider>

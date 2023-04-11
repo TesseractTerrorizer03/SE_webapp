@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { getDatabase, ref, push, onValue } from "firebase/database";
-import {auth} from "../firebase";
+import { getDatabase, ref, onValue } from "firebase/database";
 import "./QuestionForum.css";
 import Navbar from './navbar';
+import { Link } from "react-router-dom";
+
 const db = getDatabase();
 
 const QuestionPage = () => {
@@ -21,23 +22,6 @@ const QuestionPage = () => {
     });
   }, []);
 
-//   const addNewTask = (query, userEmail, tags) => {
-//     push(ref(db, 'Questions'), {
-//       query,
-//       userEmail,
-//       tags,
-//     });
-//   };
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const { value: query } = event.target.elements['userQuestion'];
-//     const { value: tags } = event.target.elements['tags'];
-//     const currentUser = auth.currentUser;
-//     const userEmail = currentUser ? currentUser.email : null;
-//     addNewTask(query, userEmail, tags);
-//     event.target.reset();
-//   };
 
 return (
   <div>
@@ -49,6 +33,9 @@ return (
           <p><div className='individual-qs-title'>Qs.</div> {question.query}</p>
           <p><div className='individual-qs-title'>Asked by:</div> {question.userEmail}</p>
           <p>{question.tags && question.tags.join(", ")}</p>
+          <Link to={`/Answers/${question.id}`}>
+            <button className="Answers" >Answers</button>
+          </Link>
           {/* {console.log(question.tags)} */}
         </div>
       ))}
