@@ -38,7 +38,7 @@ const Answers = () => {
   const editUserData = (event) => {
     const { value } = event.target;
     setUserEdit(value);
-    console.log(userEdit)
+    // console.log(userEdit)
   };
 
 
@@ -139,11 +139,11 @@ const Answers = () => {
               onChange={editUserData}
             />
             <div className="edit-buttons">
-              <button className="reply-button" onClick={saveAnswer}>
+              <button className="edit-ans-button" onClick={saveAnswer}>
                 Save
               </button>
               <button
-                className="reply-button"
+                className="delete-ans-button"
                 onClick={() => setEditIndex(-1)}
               >
                 Cancel
@@ -152,7 +152,7 @@ const Answers = () => {
           </>
         ) : (
           <>
-            <p className="answer-text">-> {answer.answer}</p>
+            <p className="answer-text">- {answer.answer}</p>
             <div className="edit-buttons">
               <button
                 className="edit-ans-button"
