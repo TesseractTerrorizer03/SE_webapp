@@ -66,14 +66,14 @@ nav{
     width: 40px;
 }
 .search-box{
-    background-color: #efefef;
+    /* background-color: #efefef;
     width: 400px;
     border-radius: 20px;
     display: flex;
     align-items: center;
     padding: 0 25px;
     margin-right: 30px;
-    transition: transform .3s; /* Animation */
+    transition: transform .3s; Animation */
 }
 
 .search-box:hover {
@@ -301,6 +301,7 @@ nav{
   .user_name_online{
     background-color: #c25757;
     margin-right: 2%;
+    width: 23%;
   }
   
   .user_name_online:hover{

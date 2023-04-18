@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, child } from 'firebase/database';
-
+import Navbar from "./navbar";
+import "./Search.css";
 const Tags = () => {
   const [tag, setTag] = useState('');
   const [pushIds, setPushIds] = useState([]);
@@ -48,7 +49,11 @@ const Tags = () => {
   };
 
   return (
-    <div>
+    <div >
+      <Navbar />
+      <div className='Tag-question-wrapper'>
+        <div className='tag-question-title'>Search Questions with Tags</div>
+      
       <select value={tag} onChange={handleTagChange}>
         <option value="">Select a tag</option>
         <option value="CS Course">CS Course</option>
@@ -56,19 +61,22 @@ const Tags = () => {
         <option value="MAL Course">MAL Course</option>
         <option value="EE Course">EE Course</option>
       </select>
-      
+      <div className='single-ans'>
       {questions.length > 0 ? (
         <div>
-          Questions for {tag}:
+        <span className='tag-question-title2'>Questions for {tag}:</span>
+
           <ul>
             {questions.map((query) => (
-              <li key={query}>{query}</li>
+              <li key={query} className='tags-qs-li'>{query}</li>
             ))}
           </ul>
         </div>
       ) : (
         <div>No questions found</div>
       )}
+      </div>
+    </div>
     </div>
   );
 };

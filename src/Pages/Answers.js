@@ -185,7 +185,7 @@ const Answers = () => {
             value={userEdit}
             onChange={editUserData}
           />
-          <button className="edit-button" onClick={addReply}>
+          <button className="reply-btn" onClick={addReply}>
             Reply
           </button>
         </div>

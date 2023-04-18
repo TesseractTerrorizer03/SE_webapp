@@ -12,6 +12,9 @@ function Navbar(){
     const GoTODashboard = () =>{
         navigate("/dashboard")
       }
+      const GoTOSearch = () =>{
+        navigate("/search")
+      }
       const GoTOQuestions = () =>{
         navigate("/QuestionForum")
       }
@@ -49,10 +52,19 @@ function Navbar(){
     </div>
     <div className="nav-right">
       <div className="search-box">
-        <img src={require('./search_icon.png')} alt="search icon" className="search-icon" />
-        <input type="text" placeholder="Search" />
+        {/* <img src={require('./search_icon.png')} alt="search icon" className="search-icon" /> */}
+        {/* <input type="text" placeholder="Search" /> */}
       </div>
       {/* <div className="user_name online"> */}
+      <button
+                className="user_name_online"
+                // id="dashboard"
+                type="button"
+                onClick={GoTOSearch}
+                >
+                Search
+                </button>
+
       <button
                 className="user_name_online"
                 // id="dashboard"
