@@ -44,6 +44,7 @@ function Home(){
       event.preventDefault(); // prevent the form from submitting and refreshing the page
       
       const currentUser = auth.currentUser;
+      console.log(currentUser)
       const userEmail = currentUser ? currentUser.email : null;
       const { value: query } = event.target.elements['query']; // get the value of the textarea element
   

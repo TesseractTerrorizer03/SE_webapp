@@ -9,7 +9,7 @@ import { AuthContextProvider } from './Pages/AuthContext.js';
 import ProtectedRoute from './Pages/ProtectedRoute';
 import {Routes, Route} from 'react-router-dom';
 import QuestionSearch from './Pages/Search';
-
+import SeeAll from './Pages/SeeAll';
 
 const App = () =>{
   
@@ -30,11 +30,17 @@ const App = () =>{
               <Answers/>
            </ProtectedRoute>
           }/>
-
+          
           <Route path="/dashboard" element={
              <ProtectedRoute>
               <Dashboard/>
              </ProtectedRoute>
+          }/>
+
+          <Route path="/SeeAll" element={
+           <ProtectedRoute>
+              <SeeAll/>
+           </ProtectedRoute>
           }/>
           <Route path="/Search" element={
              <ProtectedRoute>
@@ -47,7 +53,6 @@ const App = () =>{
              </ProtectedRoute>
           }/>
           <Route path="/Answers/:questionId" element={<Answers />} />
-          {/* <Route path="/dashboard" element={<Dashboard/>}/> */}
         </Routes>
       </AuthContextProvider>
     </div>

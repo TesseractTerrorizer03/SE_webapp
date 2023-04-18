@@ -20,6 +20,7 @@ const Answers = () => {
   const [userReply, setUserReply] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
   const [userEdit, setUserEdit] = useState("");
+  
   // const auth = getAuth();
   // const user = auth.currentUser;
   // const userDocRef = doc(db, "Users", user.uid);

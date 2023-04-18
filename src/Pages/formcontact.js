@@ -3,7 +3,7 @@ import './formcontact.css';
 import {useNavigate} from 'react-router-dom';
 import {  AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
 import { db ,auth} from "../firebase";
-import {  createUserWithEmailAndPassword } from "firebase/auth";
+import {  createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
 import {  doc, setDoc } from "firebase/firestore";
 import dbAnimation from "./doubt_animation.json";
 import Lottie from "lottie-react";
@@ -71,15 +71,12 @@ const handleSignUp = async (e) => {
     const { rollno, pass, email } = useracc;
     if (email !== "" && pass !== "") {
       try {
-        // const auth = getFirestore();
         const result = await createUserWithEmailAndPassword(auth, email, pass);
-        // const db = getFirestore();
-        await setDoc(doc(db, "Users", result.user.uid), {
-          email: result.user.email,
-          rollno: rollno,
-          uid: result.user.uid,
-          displayName: result.user.email.split("@")[0],
+
+        await updateProfile(result.user, {
+          displayName: name
         });
+        
         navigate("/home")
         // alert("User added! Please Login.");
         setUseracc({ rollno: "", pass: "", email: "" }); // Clear form fields after successful signup
@@ -89,12 +86,13 @@ const handleSignUp = async (e) => {
         } else if (error.code === "auth/invalid-email") {
           alert("That email address is invalid!");
         } else {
-          alert('Please Login!');
+          alert(error.message);
         }
       }
     } else {
       alert("Please Enter Your All Field");
     }
+    
   };
 
     // const postData1=async(e)=>{
