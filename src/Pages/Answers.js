@@ -152,16 +152,16 @@ const Answers = () => {
           </>
         ) : (
           <>
-            <p className="answer-text">{answer.answer}</p>
+            <p className="answer-text">-> {answer.answer}</p>
             <div className="edit-buttons">
               <button
-                className="reply-button"
+                className="edit-ans-button"
                 onClick={() => editAnswer(index)}
               >
                 Edit
               </button>
               <button
-                className="reply-button"
+                className="delete-ans-button"
                 onClick={() => deleteAnswer(index)}
               >
                 Delete
