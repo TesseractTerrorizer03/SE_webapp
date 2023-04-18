@@ -63,7 +63,7 @@ const Tags = () => {
           <option value="MAL Course">MAL Course</option>
           <option value="EE Course">EE Course</option>
         </select>
-        <div className='single-ans'>
+        {/* <div className='single-ans'> */}
           {questions.length > 0 ? (
             <div>
               <span className='tag-question-title2'>Questions for {tag}:</span>
@@ -83,7 +83,7 @@ const Tags = () => {
           ) : (
             <div>No questions found</div>
           )}
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );
