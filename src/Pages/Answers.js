@@ -37,6 +37,7 @@ const Answers = () => {
   const editUserData = (event) => {
     const { value } = event.target;
     setUserEdit(value);
+    console.log(userEdit)
   };
 
 
@@ -60,7 +61,7 @@ const Answers = () => {
   const saveAnswer = () => {
     const newAnswers = [...answers];
     newAnswers[editIndex] = {
-      answer: userReply,
+      answer: userEdit,
       userEmail: currentUser.email,
     };
     const questionRef = ref(db, `Questions/${questionId}`);
@@ -123,72 +124,69 @@ const Answers = () => {
         </p>
   
         <span className="answers-heading">Answers:</span>
-        {answers.map((answer, index) => (
-          <div key={index}>
-            {currentUser.email === answer.userEmail ? (
-              editIndex === index ? (
-                <>
-                  <textarea
-                    className="rep-box"
-                    type="text"
-                    value={userReply}
-                    onChange={getUserData}
-                  />
-                  <div className="edit-buttons">
-                    <button className="reply-button" onClick={saveAnswer}>
-                      Save
-                    </button>
-                    <button
-                      className="reply-button"
-                      onClick={() => setEditIndex(-1)}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <>
-                
-                  <p>
-                    {answer.answer}
-                  </p>
-                
-                  <div className="edit-buttons">
-                    <button
-                      className="reply-button"
-                      onClick={() => editAnswer(index)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="reply-button"
-                      onClick={() => deleteAnswer(index)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </>
-              )
-            ) : (
-              <p>
-                {index + 1}. {answer.answer}
-              </p>
-            )}
-          </div>
-        ))}
-  
-        <div className="edit-box" id="">
-          <textarea
-            className="ed-box"
-            type="text"
-            placeholder="Type your answer here..."
-            value={userEdit}
-            onChange={editUserData}
-          />
-          <button className="reply-btn" onClick={addReply}>
-            Reply
-          </button>
-        </div>
+<ul className="answer-list">
+  {answers.map((answer, index) => (
+    index === 0 ? null : (
+    <li key={index} className="answer-item">
+      {currentUser.email === answer.userEmail ? (
+        editIndex === index ? (
+          <>
+            <textarea
+              className="rep-box"
+              type="text"
+              value={userEdit}
+              onChange={editUserData}
+            />
+            <div className="edit-buttons">
+              <button className="reply-button" onClick={saveAnswer}>
+                Save
+              </button>
+              <button
+                className="reply-button"
+                onClick={() => setEditIndex(-1)}
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="answer-text">-> {answer.answer}</p>
+            <div className="edit-buttons">
+              <button
+                className="edit-ans-button"
+                onClick={() => editAnswer(index)}
+              >
+                Edit
+              </button>
+              <button
+                className="delete-ans-button"
+                onClick={() => deleteAnswer(index)}
+              >
+                Delete
+              </button>
+            </div>
+          </>
+        )
+      ) : (
+        <p className="answer-text">{answer.answer}</p>
+      )}
+    </li>
+    )
+  ))}
+</ul>
+<div className="edit-box" id="">
+  <textarea
+    className="ed-box"
+    type="text"
+    placeholder="Type your answer here..."
+    value={userReply}
+    onChange={getUserData}
+  />
+  <button className="edit-button" onClick={addReply}>
+    Reply
+  </button>
+</div>
       </div>
     </div>
   );

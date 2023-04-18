@@ -58,7 +58,7 @@
     height: 100px;
   }
   .reply-btn{
-    margin-top: 4%;
+    margin-top: 1%;
   }
   .edit-box{
     margin-left: 5%;
@@ -66,4 +66,28 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+  }
+  .edit-ans-button{
+    background-color: rgb(43, 51, 138);
+    margin-right: 10px;
+    font-size: 15px;
+    height: 35px;
+    width: fit-content;
+    border-radius: 5px
+  }
+  .delete-ans-button{
+    background-color: rgb(196 13 0);
+    margin-right: 10px;
+    font-size: 15px;
+    height: 35px;
+    width: fit-content;
+    border-radius: 5px
+  }
+  .edit-button{
+    margin-right: 10px;
+    font-size: 20px;
+    height: 40px;
+    width: fit-content;
+    border-radius: 5px;
+    margin-top: 20px;
   }
