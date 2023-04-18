@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { auth, database } from "../firebase";
 import { signOut } from "firebase/auth";
-import { query, ref,orderByChild, equalTo, onValue,getDatabase, get } from 'firebase/database';
+import {  ref, get } from 'firebase/database';
 import { UserAuth } from './AuthContext';
 
 import Navbar from './navbar.js';

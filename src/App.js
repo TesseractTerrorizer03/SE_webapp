@@ -8,6 +8,7 @@ import Answers from './Pages/Answers';
 import { AuthContextProvider } from './Pages/AuthContext.js';
 import ProtectedRoute from './Pages/ProtectedRoute';
 import {Routes, Route} from 'react-router-dom';
+import QuestionSearch from './Pages/Search';
 
 
 const App = () =>{
@@ -33,6 +34,11 @@ const App = () =>{
           <Route path="/dashboard" element={
              <ProtectedRoute>
               <Dashboard/>
+             </ProtectedRoute>
+          }/>
+          <Route path="/Search" element={
+             <ProtectedRoute>
+              <QuestionSearch/>
              </ProtectedRoute>
           }/>
           <Route path="/QuestionForum" element={

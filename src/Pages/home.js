@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import './home.css';
-import { getDatabase, ref, push } from "firebase/database";
+import { getDatabase, ref, push,set } from "firebase/database";
 import Navbar from './navbar.js';
 import {auth} from "../firebase";
 import { signOut } from "firebase/auth";
@@ -9,9 +9,8 @@ import {useNavigate} from 'react-router-dom';
 
 function Home(){
 
-  const [tags, setTags] = useState(['CS Course', 'MAL Course', 'Physics ', 'Chemistry']);
-  // const [answers, setAnswers] = useState([]);
-  const navigate= useNavigate();
+  const [tags, setTags] = useState(['CS Course', 'MAL Course', 'Chemistry','EE Course']);
+  // const navigate= useNavigate();
   const [usertxt, setUsertxt] = useState({ query: '', tags: [] });
   
   const getUserData=(event)=>{
@@ -52,6 +51,8 @@ function Home(){
     });
   });
 
+  let questionRef;
+
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
     if (checked) {
@@ -81,7 +82,7 @@ function Home(){
     }
   
     // Add the task to the database with the user's email and the tag
-    await push(tasksRef, {
+     await push(tasksRef, {
       task,
       userEmail,
       tag,
@@ -106,7 +107,9 @@ function Home(){
     return null;
   }
 
-  
+
+  let questionId
+
   const postData = async (e) => {
     e.preventDefault();
   
@@ -129,30 +132,50 @@ function Home(){
         }),
       });
   
-      if (res1) {
+      if (res1.ok) {
+        const data = await res1.json();
+        questionId = data.name;
         setUsertxt((prevState) => ({ ...prevState, query: '', tags: [] }));
-        alert('Question Posted!');
+        alert(`Question Posted !`);
+      } else {
+        alert('Failed to post question');
       }
     } else {
       alert('You must choose at least 1 tag and the text cannot be empty!');
     }
   };
   
+
+  const postTags = async (e) => {
+    const { query, tags } = usertxt;
+    e.preventDefault();
+    // const currentUser = auth.currentUser;
+    // set(ref(db,`tags/${selected_tag}),[ques.id]:true),
+    tags.forEach(tag => {
+      set(ref(db, `Tags/${tag}/${questionId}`), true);
+    });
+  };
+  
+  const handlePost = async (e) => {
+    e.preventDefault();
+    await postData(e);
+    await postTags(e);
+  };
   
 
 
-  const GoTODashboard = () =>{
-    navigate("/dashboard")
-  }
-    const handleSignOut = () => {
-      signOut(auth).then(() => {
-        alert('Succesfully Signed out!')
-        navigate("/")
-      }).catch((error) => {
-        alert('Error in Signing out!')
-        alert(error);
-      });
-    };
+  // const GoTODashboard = () =>{
+  //   navigate("/dashboard")
+  // }
+    // const handleSignOut = () => {
+    //   signOut(auth).then(() => {
+    //     alert('Succesfully Signed out!')
+    //     navigate("/")
+    //   }).catch((error) => {
+    //     alert('Error in Signing out!')
+    //     alert(error);
+    //   });
+    // };
     return (
         <div className='home_div'>
     <Navbar/>
@@ -179,6 +202,12 @@ function Home(){
               {/* <a href="#"className='list-items'> */}
                 <img src={require('./csimage.png')} className='side-img' alt="CS" />
                 <span className='side-name'>Computer Science</span>
+              {/* </a> */}
+            </li>
+            <li>
+              {/* <a href="#"className='list-items'> */}
+                <img src={require('./csimage.png')} className='side-img' alt="EE" />
+                <span className='side-name'>EE Course</span>
               {/* </a> */}
             </li>
           </ul>
@@ -208,7 +237,7 @@ function Home(){
       </div>
     ))}
   </div>
-        <button id="submit-btn"  onClick={postData}> Post</button>
+        <button id="submit-btn"  onClick={handlePost}> Post</button>
       </div>
     </div>
     <div className="right-sidebar" />

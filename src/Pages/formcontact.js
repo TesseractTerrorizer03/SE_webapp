@@ -1,9 +1,8 @@
 import React,{ useState} from "react";
 import './formcontact.css';
 import {useNavigate} from 'react-router-dom';
-import { getAuth ,AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
+import {  AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
 import { db ,auth} from "../firebase";
-// import { useState } from "react";
 import {  createUserWithEmailAndPassword } from "firebase/auth";
 import {  doc, setDoc } from "firebase/firestore";
 import dbAnimation from "./doubt_animation.json";
@@ -90,7 +89,7 @@ const handleSignUp = async (e) => {
         } else if (error.code === "auth/invalid-email") {
           alert("That email address is invalid!");
         } else {
-          alert('Test');
+          alert('Please Login!');
         }
       }
     } else {
