@@ -4,7 +4,7 @@ import { getDatabase, ref, push,set } from "firebase/database";
 import Navbar from './navbar.js';
 import {auth} from "../firebase";
 import { signOut } from "firebase/auth";
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 
 function Home(){
@@ -190,25 +190,33 @@ function Home(){
             <li className='list-items'>
               {/* <a href=""className='side-links'> */}
                 <img src={require('./science.webp')} className='side-img' alt="Science" />
-                <span className='side-name'>Science</span>
+                <Link to='/Search?tag=Chemistry'>
+                <span className='side-name'>Chemistry</span>
+                </Link>
               {/* </a> */}
             </li>
             <li>
               {/* <a href="#"className='list-items'> */}
                 <img src={require('./math.webp')} className='side-img' alt="Maths" />
-                <span className='side-name'>Maths</span>
+                <Link to='/Search?tag=MAL Course'>
+                <span className='side-name'>MAL Course</span>
+                </Link>
               {/* </a> */}
             </li>
             <li>
               {/* <a href="#"className='list-items'> */}
                 <img src={require('./csimage.png')} className='side-img' alt="CS" />
-                <span className='side-name'>Computer Science</span>
+                <Link to='/Search?tag=CS Course'>
+                <span className='side-name'>CS Course</span>
+                </Link>
               {/* </a> */}
             </li>
             <li>
               {/* <a href="#"className='list-items'> */}
                 <img src={require('./csimage.png')} className='side-img' alt="EE" />
+                <Link to='/Search?tag=EE Course'>
                 <span className='side-name'>EE Course</span>
+                </Link>
               {/* </a> */}
             </li>
           </ul>

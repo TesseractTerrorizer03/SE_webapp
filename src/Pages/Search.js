@@ -3,6 +3,7 @@ import { getDatabase, ref, onValue, child } from 'firebase/database';
 import Navbar from "./navbar";
 import "./Search.css";
 import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 const Tags = () => {
   const [tag, setTag] = useState('');
@@ -48,7 +49,17 @@ const Tags = () => {
     setTag(e.target.value);
     setPushIds([]);
     setQuestions([]);
-  };
+  }
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const tagParam = searchParams.get('tag');
+    if (tagParam) {
+      setTag(tagParam);
+    }
+  }, [location]);
+
 
   return (
     <div>
