@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+# Doubt Busters - Software Engineering Project
+This is the github repository of our Doubt Forum Project - Doubt Busters. 
+In the project, the user can signup and login using his mail and password and then he can post his/her doubts according to the subject tags and answer other's doubts. The user can also access all the questions that he asked in his personal dashboard. 
+The questions are stored in a database which can be searched through the search bar and can be filtered using tags, in a reverse chronological order of the time when it was posted. A user can also reply to the answer of any question and delete it in case of any errors. 
+Our website is created using React Js, Css, and Firebase technologies.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+## Once the project is downloaded, run the commands given below to run the website on your localhost.
+
+
+
+# Getting Started with Create React App
 
 ## Available Scripts
 
